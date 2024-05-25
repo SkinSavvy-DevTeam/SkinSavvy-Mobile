@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">SkinSavvy</string>
+    <string name="app_name_desc">Stay Healthy</string>
+    <string name="feature_scan">Scan Kulit</string>
+    <string name="feature_instruction">Instruksi</string>
+    <string name="feature_history">Riwayat</string>
+    <string name="our_feature">Fitur Kami</string>
+    <string name="article">Artikel</string>
+    <string name="tips_tricks">Tips &amp; Tricks</string>
+    <string name="search_solution">Mau tau gimana cara ngatasinya?</string>
+    <string name="button_search_solution">Click Saya</string>
 </resources>
