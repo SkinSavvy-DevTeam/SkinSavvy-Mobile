@@ -32,7 +32,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="600dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/border"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
@@ -81,6 +81,7 @@
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="50dp"
@@ -92,4 +93,5 @@
         app:layout_constraintTop_toTopOf="parent"
         android:paddingLeft="15dp"
         app:srcCompat="@drawable/arrowback" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

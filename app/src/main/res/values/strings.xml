@@ -11,5 +11,7 @@
     <string name="button_search_solution">Click Saya</string>
     <string name="isi_article">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris in aliquam sem fringilla ut morbi tincidunt augue interdum. Cursus sit amet dictum sit amet justo donec. Adipiscing tristique risus nec feugiat in fermentum. Placerat in egestas erat imperdiet sed. Morbi tincidunt augue interdum velit euismod in. Eget arcu dictum varius duis at consectetur. Enim nunc faucibus a pellentesque sit amet porttitor eget dolor. Amet nisl suscipit adipiscing bibendum est. Id porta nibh venenatis cras sed felis eget velit aliquet.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</string>
     <string name="article_tittle">Lorem ipsum dolor sit amet.</string>
+    <string name="result_detection">Hasil</string>
+
 
 </resources>
