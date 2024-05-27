@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/header_layout"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:orientation="vertical"
@@ -44,4 +45,193 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/feature_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="28dp"
+        app:layout_constraintTop_toBottomOf="@+id/header_layout"
+        tools:ignore="MissingConstraints" >
+
+        <LinearLayout
+            android:id="@+id/feature_scan_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="22dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_feature_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/feature_background_shape"
+                android:backgroundTint="@color/light_brown"
+                android:src="@drawable/fitur_scan_kulit"
+                android:padding="4dp"
+                android:elevation="2dp"
+                android:layout_margin="2dp"
+                android:contentDescription="@string/feature_scan"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/feature_scan"
+                android:fontFamily="@font/custom_font_family"
+                android:textStyle="normal"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/feature_instruction_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="22dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_feature_instruction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/feature_background_shape"
+                android:backgroundTint="@color/light_purple"
+                android:src="@drawable/fitur_instruksi"
+                android:padding="4dp"
+                android:elevation="2dp"
+                android:layout_margin="2dp"
+                android:contentDescription="@string/feature_instruction"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/feature_instruction"
+                android:fontFamily="@font/custom_font_family"
+                android:textStyle="normal"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/feature_history_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="22dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_feature_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/feature_background_shape"
+                android:src="@drawable/fitur_riwayat"
+                android:padding="4dp"
+                android:elevation="2dp"
+                android:layout_margin="2dp"
+                android:contentDescription="@string/feature_scan"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/feature_history"
+                android:fontFamily="@font/custom_font_family"
+                android:textStyle="normal"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_poster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/rounded_shape"
+        android:fontFamily="@font/custom_font_family"
+        android:text="@string/our_feature"
+        android:paddingStart="26dp"
+        android:paddingEnd="26dp"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintTop_toBottomOf="@+id/feature_layout"
+        app:layout_editor_absoluteX="28dp"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_carousel_poster"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingStart="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_poster"
+        tools:listitem="@layout/carousel_poster_layout"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/tv_article"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/rounded_shape"
+        android:fontFamily="@font/custom_font_family"
+        android:text="@string/our_feature"
+        android:paddingStart="26dp"
+        android:paddingEnd="26dp"
+        android:layout_margin="28dp"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintTop_toBottomOf="@+id/rv_carousel_poster"
+        app:layout_editor_absoluteX="28dp"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_carousel_article"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingStart="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_article"
+        tools:listitem="@layout/carousel_item_layout"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/tv_tips_tricks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/rounded_shape"
+        android:fontFamily="@font/custom_font_family"
+        android:text="@string/our_feature"
+        android:paddingStart="26dp"
+        android:paddingEnd="26dp"
+        android:layout_margin="28dp"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintTop_toBottomOf="@+id/rv_carousel_article"
+        app:layout_editor_absoluteX="28dp"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_carousel_tips"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingStart="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_tips_tricks"
+        tools:listitem="@layout/carousel_item_layout"
+        tools:ignore="RtlSymmetry" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
