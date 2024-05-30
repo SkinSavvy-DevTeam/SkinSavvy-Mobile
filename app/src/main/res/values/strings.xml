@@ -13,5 +13,7 @@
     <string name="article_tittle">Lorem ipsum dolor sit amet.</string>
     <string name="result_detection">Hasil</string>
 
-
+    <string name="login">Login</string>
+    <string name="user_email">Email</string>
+    <string name="password">Password</string>
 </resources>
