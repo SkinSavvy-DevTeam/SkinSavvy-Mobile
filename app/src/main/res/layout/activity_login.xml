@@ -42,11 +42,9 @@
         android:fontFamily="@font/custom_font_family"
         android:textStyle="bold"
         android:textColor="@color/green"
-        android:alpha="0"
         android:text="@string/user_email"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_app_logo"
-        tools:alpha="100" />
+        app:layout_constraintTop_toBottomOf="@+id/login_app_logo" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailEditTextLayout"
@@ -54,7 +52,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:alpha="0"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:boxCornerRadiusBottomEnd="16dp"
         app:boxCornerRadiusBottomStart="16dp"
@@ -62,8 +59,7 @@
         app:boxCornerRadiusTopStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailTextView"
-        tools:alpha="100" >
+        app:layout_constraintTop_toBottomOf="@+id/emailTextView">
 
         <com.myapp.skinsavvy.customview.EmailEditText
             android:id="@+id/ed_login_email"
@@ -84,11 +80,9 @@
         android:fontFamily="@font/custom_font_family"
         android:textStyle="bold"
         android:textColor="@color/green"
-        android:alpha="0"
         android:text="@string/password"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditTextLayout"
-        tools:alpha="100" />
+        app:layout_constraintTop_toBottomOf="@+id/emailEditTextLayout" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordEditTextLayout"
@@ -96,7 +90,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:alpha="0"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:boxCornerRadiusBottomEnd="16dp"
         app:boxCornerRadiusBottomStart="16dp"
@@ -105,8 +98,7 @@
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
-        tools:alpha="100" >
+        app:layout_constraintTop_toBottomOf="@+id/passwordTextView">
 
         <com.myapp.skinsavvy.customview.PasswordEditText
             android:id="@+id/ed_login_password"
@@ -125,12 +117,10 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:alpha="0"
         android:backgroundTint="@color/green"
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout"
-        tools:alpha="100" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

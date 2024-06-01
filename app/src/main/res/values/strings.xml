@@ -12,8 +12,29 @@
     <string name="isi_article">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris in aliquam sem fringilla ut morbi tincidunt augue interdum. Cursus sit amet dictum sit amet justo donec. Adipiscing tristique risus nec feugiat in fermentum. Placerat in egestas erat imperdiet sed. Morbi tincidunt augue interdum velit euismod in. Eget arcu dictum varius duis at consectetur. Enim nunc faucibus a pellentesque sit amet porttitor eget dolor. Amet nisl suscipit adipiscing bibendum est. Id porta nibh venenatis cras sed felis eget velit aliquet.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</string>
     <string name="article_tittle">Lorem ipsum dolor sit amet.</string>
     <string name="result_detection">Hasil</string>
+    <string name="register_header">Register</string>
+    <string name="register_title">Isi Data Dirimu</string>
+    <string name="register_sub_title">Silahkan lengkapi data dirimu</string>
+    <string name="name">Nama</string>
+    <string name="gender">Jenis Kelamin</string>
 
     <string name="login">Login</string>
     <string name="user_email">Email</string>
     <string name="password">Password</string>
+    <string name="male">Laki-Laki</string>
+    <string name="female">Perempuan</string>
+    <string name="do_you_have_account">Sudah punya akun?</string>
+    <string name="login_here">Login disini</string>
+    <string name="instuction_user">Instruksi Pengguna</string>
+    <string name="sub_instruction">Scan Kulit</string>
+    <string name="instruction_1">Klik pada icon Scan Kulit yang ada di halaman utama</string>
+    <string name="instruction_2">Jika kamera sudah terbuka, ambil gambar wajahmu yang ingin dideteksi permasalahannya atau ambil gambar dari galeri</string>
+    <string name="instruction_3">Selanjutnya, kamu akan langsung berpindah ke halaman hasil untuk dapat melihat hasil deteksi permasalahan wajahmu</string>
+    <string name="instruction_4">Untuk melihat solusi dari masalah yang terdeteksi, klik tombol ‘Click Saya’ yang ada di halaman hasil</string>
+    <string name="no1">1. </string>
+    <string name="no2">2. </string>
+    <string name="no3">3. </string>
+    <string name="no4">4. </string>
+
+
 </resources>
