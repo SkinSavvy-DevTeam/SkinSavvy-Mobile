@@ -20,7 +20,7 @@
         android:theme="@style/Theme.SkinSavvy"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".InstructionActivity"
             android:exported="false"/>
         <activity
             android:name=".SplashScreen"
@@ -38,8 +38,8 @@
             android:name=".RegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".InstructionActivity"
-            android:exported="true" >
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

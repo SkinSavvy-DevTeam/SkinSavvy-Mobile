@@ -1,5 +1,6 @@
 package com.myapp.skinsavvy
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,5 +48,14 @@ class MainActivity : AppCompatActivity() {
 
         recyclerViewTips.adapter = CarouselAdapter(tips, isTextVisible = true)
         recyclerViewTips.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        binding.ivFeatureScan.setOnClickListener{
+            startActivity(Intent(this@MainActivity, CameraXActivity::class.java))
+        }
+
+        binding.ivFeatureInstruction.setOnClickListener{
+            startActivity(Intent(this@MainActivity, InstructionActivity::class.java))
+        }
     }
+
 }
