@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.myapp.skinsavvy.data.pref.DataModel
-import com.myapp.skinsavvy.databinding.CarouselPosterLayoutBinding
+import com.myapp.skinsavvy.databinding.PosterItemLayoutBinding
 
 class PosterAdapter(private val items: List<DataModel>) : ListAdapter<DataModel, PosterAdapter.PosterViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PosterViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = CarouselPosterLayoutBinding.inflate(inflater, parent, false)
+        val binding = PosterItemLayoutBinding.inflate(inflater, parent, false)
         return PosterViewHolder(binding)
     }
 
@@ -26,7 +26,7 @@ class PosterAdapter(private val items: List<DataModel>) : ListAdapter<DataModel,
 
     override fun getItemCount() = items.size
 
-    class PosterViewHolder(val binding: CarouselPosterLayoutBinding) : RecyclerView.ViewHolder(binding.root)
+    class PosterViewHolder(val binding: PosterItemLayoutBinding) : RecyclerView.ViewHolder(binding.root)
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<DataModel>() {
