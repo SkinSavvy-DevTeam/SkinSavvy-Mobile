@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.myapp.skinsavvy.adapter.CarouselAdapter
 import com.myapp.skinsavvy.data.pref.DataModel
 import com.myapp.skinsavvy.databinding.ActivityMainBinding
@@ -45,6 +46,24 @@ class MainActivity : AppCompatActivity() {
         binding.ivFeatureInstruction.setOnClickListener{
             startActivity(Intent(this@MainActivity, InstructionActivity::class.java))
         }
-    }
 
+        setMenuItem()
+    }
+    private fun setMenuItem() {
+        val bottomNavigationView: BottomNavigationView = binding.bottomNavigation
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.home -> {
+                    true
+                }
+
+                R.id.scan -> {
+                    startActivity(Intent(this@MainActivity, CameraXActivity::class.java))
+                    true
+                }
+
+                else -> true
+            }
+        }
+    }
 }
