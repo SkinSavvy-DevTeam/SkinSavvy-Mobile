@@ -14,7 +14,7 @@
         <LinearLayout
             android:id="@+id/header_layout"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="128dp"
             android:orientation="vertical"
             android:padding="28dp"
             android:background="@drawable/header_background_shape"
@@ -28,7 +28,6 @@
                 android:textStyle="bold"
                 android:textColor="@color/green"
                 android:textSize="28sp"
-                android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -68,8 +67,8 @@
 
                 <ImageView
                     android:id="@+id/iv_feature_scan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:background="@drawable/feature_background_shape"
                     android:backgroundTint="@color/light_brown"
                     android:src="@drawable/fitur_scan_kulit"
@@ -99,8 +98,8 @@
 
                 <ImageView
                     android:id="@+id/iv_feature_instruction"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:background="@drawable/feature_background_shape"
                     android:backgroundTint="@color/light_purple"
                     android:src="@drawable/fitur_instruksi"
@@ -130,8 +129,8 @@
 
                 <ImageView
                     android:id="@+id/iv_feature_history"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:background="@drawable/feature_background_shape"
                     android:src="@drawable/fitur_riwayat"
                     android:padding="4dp"
@@ -184,10 +183,9 @@
             android:id="@+id/tv_article"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:background="@drawable/rounded_shape"
             android:fontFamily="@font/custom_font_family"
-            android:text="@string/article"
+            android:text="@string/for_you"
             android:paddingStart="26dp"
             android:paddingEnd="26dp"
             android:layout_margin="28dp"
@@ -201,40 +199,24 @@
             android:id="@+id/rv_carousel_article"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingStart="28dp"
+            android:paddingTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_article"
             tools:listitem="@layout/carousel_item_layout"
             tools:ignore="RtlSymmetry" />
 
-        <TextView
-            android:id="@+id/tv_tips_tricks"
+        <Button
+            android:id="@+id/article_see_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/rounded_shape"
-            android:fontFamily="@font/custom_font_family"
-            android:text="@string/tips_tricks"
-            android:paddingStart="26dp"
-            android:paddingEnd="26dp"
-            android:layout_margin="28dp"
-            android:textSize="16sp"
-            android:textStyle="normal"
-            app:layout_constraintTop_toBottomOf="@+id/rv_carousel_article"
+            android:text="@string/see_all"
+            android:backgroundTint="@color/green"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_carousel_tips"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingStart="28dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_tips_tricks"
-            tools:listitem="@layout/carousel_item_layout"
-            tools:ignore="RtlSymmetry" />
+            app:layout_constraintTop_toBottomOf="@id/rv_carousel_article"
+            tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

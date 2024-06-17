@@ -20,14 +20,14 @@ class MainActivity : AppCompatActivity() {
         // carousel poster
         val recyclerViewPoster: RecyclerView = binding.rvCarouselPoster
         val poster = listOf(
-            DataModel(R.drawable.image_carousel_1),
-            DataModel(R.drawable.image_carousel_2)
+            DataModel(R.drawable.image_poster_1),
+            DataModel(R.drawable.image_poster_2)
         )
 
         recyclerViewPoster.adapter = CarouselAdapter(poster, isTextVisible = false)
         recyclerViewPoster.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        //carousel article
+        //list article
         val recyclerViewArticle: RecyclerView = binding.rvCarouselArticle
         val article = listOf(
             DataModel(R.drawable.image_sample, "Article 1", "deskripsi"),
@@ -37,17 +37,6 @@ class MainActivity : AppCompatActivity() {
 
         recyclerViewArticle.adapter = CarouselAdapter(article, isTextVisible = true)
         recyclerViewArticle.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
-        //carousel tips and tricks
-        val recyclerViewTips: RecyclerView = binding.rvCarouselTips
-        val tips = listOf(
-            DataModel(R.drawable.image_sample, "Tips 1", "deskripsi"),
-            DataModel(R.drawable.image_sample, "Tips 2", "deskripsi"),
-            DataModel(R.drawable.image_sample, "Tips 3", "deskripsi")
-        )
-
-        recyclerViewTips.adapter = CarouselAdapter(tips, isTextVisible = true)
-        recyclerViewTips.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         binding.ivFeatureScan.setOnClickListener{
             startActivity(Intent(this@MainActivity, CameraXActivity::class.java))
