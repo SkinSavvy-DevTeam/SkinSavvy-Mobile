@@ -2,21 +2,28 @@ package com.myapp.skinsavvy
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.myapp.skinsavvy.adapter.CarouselAdapter
+import com.myapp.skinsavvy.adapter.ArticleAdapter
+import com.myapp.skinsavvy.adapter.PosterAdapter
 import com.myapp.skinsavvy.data.pref.DataModel
 import com.myapp.skinsavvy.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var mainViewModel: MainViewModel
+    private lateinit var adapter: ArticleAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         // carousel poster
         val recyclerViewPoster: RecyclerView = binding.rvCarouselPoster
@@ -25,19 +32,26 @@ class MainActivity : AppCompatActivity() {
             DataModel(R.drawable.image_poster_2)
         )
 
-        recyclerViewPoster.adapter = CarouselAdapter(poster, isTextVisible = false)
+        recyclerViewPoster.adapter = PosterAdapter(poster)
         recyclerViewPoster.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         //list article
-        val recyclerViewArticle: RecyclerView = binding.rvCarouselArticle
-        val article = listOf(
-            DataModel(R.drawable.image_sample, "Article 1", "deskripsi"),
-            DataModel(R.drawable.image_sample, "Article 2", "deskripsi"),
-            DataModel(R.drawable.image_sample, "Article 3", "deskripsi")
-        )
+        binding.rvCarouselArticle.layoutManager = LinearLayoutManager(this)
+        mainViewModel.listArticle.observe(this) {
+            val articleCount = it.take(3)
 
-        recyclerViewArticle.adapter = CarouselAdapter(article, isTextVisible = true)
-        recyclerViewArticle.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+            if (articleCount.isEmpty()) {
+                binding.rvCarouselArticle.visibility = View.GONE
+                binding.buttonAllArticle.visibility = View.GONE
+                binding.tvNoArticle.visibility = View.VISIBLE
+            } else {
+                binding.rvCarouselArticle.visibility = View.VISIBLE
+                binding.buttonAllArticle.visibility = View.VISIBLE
+                binding.tvNoArticle.visibility = View.GONE
+                adapter = ArticleAdapter(articleCount)
+                binding.rvCarouselArticle.adapter = adapter
+            }
+        }
 
         binding.ivFeatureScan.setOnClickListener{
             startActivity(Intent(this@MainActivity, CameraXActivity::class.java))
@@ -46,6 +60,10 @@ class MainActivity : AppCompatActivity() {
         binding.ivFeatureInstruction.setOnClickListener{
             startActivity(Intent(this@MainActivity, InstructionActivity::class.java))
         }
+
+//        binding.buttonAllArticle.setOnClickListener{
+//            startActivity(Intent(this@MainActivity, AllArticleActivity::class.java))
+//        }
 
         setMenuItem()
     }
@@ -64,6 +82,12 @@ class MainActivity : AppCompatActivity() {
 
                 else -> true
             }
+        }
+    }
+
+    private fun showLoading() {
+        mainViewModel.isLoading.observe(this) {
+            binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
         }
     }
 }

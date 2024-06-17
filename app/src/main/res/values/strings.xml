@@ -40,4 +40,5 @@
 
     <string name="navbar_home">Home</string>
     <string name="navbar_scan">Scan</string>
+    <string name="no_article">Artikel belum tersedia</string>
 </resources>

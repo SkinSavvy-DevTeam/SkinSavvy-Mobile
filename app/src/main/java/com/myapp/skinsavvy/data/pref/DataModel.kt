@@ -1,7 +1,7 @@
 package com.myapp.skinsavvy.data.pref
 
 data class DataModel (
-    val image: Int,
+    val thumbnailUrl: Int,
     val title: String? = null,
-    val description: String? = null
+    val body: String? = null
 )
