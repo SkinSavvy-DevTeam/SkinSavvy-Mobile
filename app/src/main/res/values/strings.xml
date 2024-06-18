@@ -27,7 +27,7 @@
     <string name="login_here">Login disini</string>
     <string name="instuction_user">Instruksi Pengguna</string>
     <string name="sub_instruction">Scan Kulit</string>
-    <string name="instruction_1">Klik pada icon Scan Kulit yang ada di halaman utama</string>
+    <string name="instruction_1">Klik pada salah satu icon Scan Kulit yang ada di halaman utama</string>
     <string name="instruction_2">Jika kamera sudah terbuka, ambil gambar wajahmu yang ingin dideteksi permasalahannya atau ambil gambar dari galeri</string>
     <string name="instruction_3">Selanjutnya, kamu akan langsung berpindah ke halaman hasil untuk dapat melihat hasil deteksi permasalahan wajahmu</string>
     <string name="instruction_4">Untuk melihat solusi dari masalah yang terdeteksi, klik tombol ‘Click Saya’ yang ada di halaman hasil</string>
@@ -41,4 +41,5 @@
     <string name="navbar_home">Home</string>
     <string name="navbar_scan">Scan</string>
     <string name="no_article">Artikel belum tersedia</string>
+    <string name="scan_navbar">Bottom Navigasi</string>
 </resources>
