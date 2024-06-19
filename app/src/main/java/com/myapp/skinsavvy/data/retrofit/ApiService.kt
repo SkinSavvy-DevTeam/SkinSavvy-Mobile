@@ -12,4 +12,9 @@ interface ApiService {
 
     @GET("severity-level-solutions/{level}")
     fun getSolution(@Path("level") level: Int): Call<ResponseSolution>
+
+    @GET("articles/{id}")
+    fun getDetailArticles(
+        @Path("id") id: String
+    ): Call<ArticlesResponse>
 }
