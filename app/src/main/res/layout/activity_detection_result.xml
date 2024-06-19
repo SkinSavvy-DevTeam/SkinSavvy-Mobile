@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:id="@+id/main"
     android:background="@color/white"
-    tools:context=".ArticleTipsActivity">
+    tools:context=".DetectionResultActivity">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -14,7 +14,8 @@
         app:layout_constraintTop_toBottomOf="@id/back_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="NotSibling">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -54,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_bold"
                     android:paddingHorizontal="20dp"
-                    android:text="Hasil"
+                    android:text="@string/result"
                     android:textAlignment="center"
                     android:textColor="@color/green"
                     android:textSize="18sp" />
@@ -65,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/inter_bold"
-                    android:text="Level 1"
+                    android:text="@string/level"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="25sp" />
@@ -107,7 +108,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_regular"
-                            android:text="Clear"
+                            android:text="@string/clear"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="15sp" />
@@ -144,7 +145,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_regular"
-                            android:text="Level 0"
+                            android:text="@string/level_0"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="15sp" />
@@ -183,7 +184,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_regular"
-                            android:text="Level 1"
+                            android:text="@string/level_1"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="15sp" />
@@ -222,7 +223,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_regular"
-                            android:text="Level 2"
+                            android:text="@string/level_2"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="15sp" />
@@ -236,7 +237,7 @@
                     android:background="@drawable/solution_rounded"
                     android:paddingHorizontal="50dp"
                     android:paddingVertical="10dp"
-                    android:text="Mau tau cara mengatasinya?" />
+                    android:text="@string/question_solution" />
 
                 <TextView
                     android:id="@+id/solutionClick"
@@ -246,7 +247,7 @@
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="5dp"
                     android:textColor="@color/white"
-                    android:text="Click Saya" />
+                    android:text="@string/Click_Me" />
 
                 <TextView
                     android:id="@+id/solution"

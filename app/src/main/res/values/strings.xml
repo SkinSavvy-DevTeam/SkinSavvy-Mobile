@@ -25,8 +25,9 @@
     <string name="female">Perempuan</string>
     <string name="do_you_have_account">Sudah punya akun?</string>
     <string name="login_here">Login disini</string>
-    <string name="instuction_user">Instruksi Pengguna</string>
+    <string name="instruction_user">Instruksi Pengguna</string>
     <string name="sub_instruction">Scan Kulit</string>
+    <string name="sub_instruction2">Pengambilan Gambar</string>
     <string name="instruction_1">Klik pada salah satu icon Scan Kulit yang ada di halaman utama</string>
     <string name="instruction_2">Jika kamera sudah terbuka, ambil gambar wajahmu yang ingin dideteksi permasalahannya atau ambil gambar dari galeri</string>
     <string name="instruction_3">Selanjutnya, kamu akan langsung berpindah ke halaman hasil untuk dapat melihat hasil deteksi permasalahan wajahmu</string>
@@ -44,4 +45,12 @@
     <string name="scan_navbar">Bottom Navigasi</string>
 
     <string name="image_classifier_failed">Image classifier failed to initialize. See error logs for details</string>
+    <string name="result">Hasil</string>
+    <string name="level">Level 1</string>
+    <string name="clear">Clear</string>
+    <string name="level_0">Level 0</string>
+    <string name="level_1">Level 1</string>
+    <string name="level_2">Level 2</string>
+    <string name="question_solution">Mau tau cara mengatasinya?</string>
+    <string name="Click_Me">Klik Saya</string>
 </resources>
