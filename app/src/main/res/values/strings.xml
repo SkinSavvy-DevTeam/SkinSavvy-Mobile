@@ -53,4 +53,9 @@
     <string name="level_2">Level 2</string>
     <string name="question_solution">Mau tau cara mengatasinya?</string>
     <string name="Click_Me">Klik Saya</string>
+    <string name="instruction_2_sub_title">Agar aplikasi dapat mendeteksi masalah wajah dengan baik, silahkan ikuti beberapa tips dalam mengambil gambar wajah dibawah ini</string>
+    <string name="instruction_2_1">Silahkan ambil gambar pada bagian wajah yang ingin dideteksi seperti dari bagian depan, kanan atau kiri</string>
+    <string name="instruction_2_2">Lakukan crop gambar menyesuaikan bentuk wajah</string>
+    <string name="instruction_2_3">Lakukan pengambilan gambar ditempat yang terang</string>
+    <string name="instruction_2_picture_example">Contoh Gambar</string>
 </resources>
