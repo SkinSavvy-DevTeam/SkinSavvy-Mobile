@@ -3,15 +3,19 @@ package com.myapp.skinsavvy
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.OrientationEventListener
 import android.view.Surface
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -20,12 +24,19 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.myapp.skinsavvy.databinding.ActivityCameraXactivityBinding
+import com.yalantis.ucrop.UCrop
+import java.io.File
+import java.util.UUID
 
 class CameraXActivity : AppCompatActivity() {
 
     private var imageCapture: ImageCapture? = null
     private lateinit var binding: ActivityCameraXactivityBinding
-    private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+    private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
+    private lateinit var imageClassifierHelper: ImageClassification
+    private var result: String? = null
+    private var currentImageUri: Uri? = null
+
 
     private val requestPermissionLauncher =
         registerForActivityResult(
@@ -44,6 +55,7 @@ class CameraXActivity : AppCompatActivity() {
             REQUIRED_PERMISSION
         ) == PackageManager.PERMISSION_GRANTED
 
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCameraXactivityBinding.inflate(layoutInflater)
@@ -52,12 +64,19 @@ class CameraXActivity : AppCompatActivity() {
         binding.switchCamera.setOnClickListener{
             startCamera()
         }
-        binding.captureImage.setOnClickListener{ takePhoto()}
+        binding.captureImage.setOnClickListener{
+            takePhoto()
+        }
 
         binding.switchCamera.setOnClickListener{
-            cameraSelector = if (cameraSelector.equals(CameraSelector.DEFAULT_BACK_CAMERA)) CameraSelector.DEFAULT_FRONT_CAMERA
+            cameraSelector = if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) CameraSelector.DEFAULT_FRONT_CAMERA
             else CameraSelector.DEFAULT_BACK_CAMERA
             startCamera()
+        }
+
+
+        binding.gallery.setOnClickListener {
+            startGallery()
         }
 
         if (!allPermissionsGranted()) {
@@ -69,6 +88,51 @@ class CameraXActivity : AppCompatActivity() {
         hideSystemUI()
         startCamera()
     }
+
+    override fun onPause() {
+        super.onPause()
+        stopCamera()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.P)
+    private fun startGallery() {
+        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+    }
+
+    @RequiresApi(Build.VERSION_CODES.P)
+    private val launcherGallery = registerForActivityResult(
+        ActivityResultContracts.PickVisualMedia()
+    ) { uri: Uri? ->
+        if (uri != null) {
+            val cropUri = Uri.fromFile(File(cacheDir, "cropped_image_${UUID.randomUUID()}.jpg"))
+
+            UCrop.of(uri, cropUri)
+                .withAspectRatio(16F, 16F)
+                .withMaxResultSize(2000, 2000)
+                .start(this)
+
+            currentImageUri = uri
+        } else {
+            Log.d("Photo Picker", "No media selected")
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.P)
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
+            val resultCropped = UCrop.getOutput(data!!)
+            currentImageUri = resultCropped
+            Log.d("crop success", "Cropping success: $resultCropped")
+            analyzeImage()
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+            val cropError = UCrop.getError(data!!)
+            Log.e("crop failed", "Cropping failed: $cropError")
+        }
+    }
+
+
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
         val photoFile = createCustomTempFile(application)
@@ -77,11 +141,11 @@ class CameraXActivity : AppCompatActivity() {
             outputOptions,
             ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
+                @RequiresApi(Build.VERSION_CODES.P)
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val intent = Intent()
-                    intent.putExtra(EXTRA_CAMERAX_IMAGE, output.savedUri.toString())
-                    setResult(CAMERAX_RESULT, intent)
-                    finish()
+                    currentImageUri = Uri.fromFile(photoFile)
+                    // Setelah gambar disimpan, mulai proses pemangkasan
+                    startCrop(currentImageUri!!)
                 }
                 override fun onError(exc: ImageCaptureException) {
                     Toast.makeText(
@@ -93,6 +157,63 @@ class CameraXActivity : AppCompatActivity() {
                 }
             }
         )
+    }
+
+    private fun startCrop(uri: Uri) {
+        val cropUri = Uri.fromFile(File(cacheDir, "cropped_image_${UUID.randomUUID()}.jpg"))
+
+        UCrop.of(uri, cropUri)
+            .withAspectRatio(16F, 16F)
+            .withMaxResultSize(2000, 2000)
+            .start(this@CameraXActivity)
+    }
+
+
+
+    @RequiresApi(Build.VERSION_CODES.P)
+    private fun analyzeImage() {
+        imageClassifierHelper = ImageClassification(
+            context = this,
+            classifierListener = object : ImageClassification.ClassifierListener {
+                override fun onError(error: String) {
+                    runOnUiThread {
+                        Toast.makeText(this@CameraXActivity, error, Toast.LENGTH_SHORT).show()
+                        hideProgressBar()
+                    }
+                }
+
+                override fun onResults(results: List<String>?, inferenceTime: Long) {
+                    runOnUiThread {
+                        results?.let {
+                            result = it.joinToString("\n")
+                            // Cetak hasil klasifikasi dan waktu inferensi ke log
+                            Log.d("Image Classification", "Result: $result")
+                            Log.d("Image Classification", "Inference Time: $inferenceTime ms")
+                            // Tampilkan hasil klasifikasi ke pengguna
+                            showToast("Result: $result\nInference Time: $inferenceTime ms")
+                            hideProgressBar()
+                            moveToResult()
+                        }
+                    }
+                }
+            }
+        )
+        currentImageUri?.let { this.imageClassifierHelper.classifyStaticImage(it) }
+    }
+
+
+
+    private fun moveToResult() {
+        val intent = Intent(this, DetectionResultActivity::class.java).apply {
+            putExtra(DetectionResultActivity.EXTRA_IMAGE, currentImageUri.toString())
+            putExtra(DetectionResultActivity.EXTRA_RESULT, result)
+        }
+        startActivity(intent)
+    }
+
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
 
@@ -111,16 +232,16 @@ class CameraXActivity : AppCompatActivity() {
     }
 
     private fun startCamera() {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-        cameraProviderFuture.addListener({
-            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-            val preview = Preview.Builder()
-                .build()
-                .also {
-                    it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
-                }
-            imageCapture = ImageCapture.Builder().build()
-            try {
+        try {
+            val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+            cameraProviderFuture.addListener({
+                val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
+                val preview = Preview.Builder()
+                    .build()
+                    .also {
+                        it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
+                    }
+                imageCapture = ImageCapture.Builder().build()
                 cameraProvider.unbindAll()
                 cameraProvider.bindToLifecycle(
                     this,
@@ -128,15 +249,34 @@ class CameraXActivity : AppCompatActivity() {
                     preview,
                     imageCapture
                 )
-            } catch (exc: Exception) {
-                Toast.makeText(
-                    this@CameraXActivity,
-                    "Gagal memunculkan kamera.",
-                    Toast.LENGTH_SHORT
-                ).show()
-                Log.e(TAG, "startCamera: ${exc.message}")
-            }
-        }, ContextCompat.getMainExecutor(this))
+            }, ContextCompat.getMainExecutor(this))
+        } catch (exc: Exception) {
+            Log.e(TAG, "Error starting camera: ${exc.message}")
+        }
+    }
+
+    private fun stopCamera() {
+        try {
+            val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+            cameraProviderFuture.addListener({
+                val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
+                cameraProvider.unbindAll()
+            }, ContextCompat.getMainExecutor(this))
+        } catch (exc: Exception) {
+            Log.e(TAG, "Error stopping camera: ${exc.message}")
+        }
+    }
+
+    private fun releaseCamera() {
+        try {
+            val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
+            cameraProviderFuture.addListener({
+                val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
+                cameraProvider.unbindAll()
+            }, ContextCompat.getMainExecutor(this))
+        } catch (exc: Exception) {
+            Log.e(TAG, "Error releasing camera: ${exc.message}")
+        }
     }
 
     private val orientationEventListener by lazy {
@@ -160,14 +300,20 @@ class CameraXActivity : AppCompatActivity() {
         super.onStart()
         orientationEventListener.enable()
     }
-    override fun onStop() {
-        super.onStop()
-        orientationEventListener.disable()
+    override fun onDestroy() {
+        super.onDestroy()
+        releaseCamera()
     }
+    private fun showProgressBar() {
+        View.VISIBLE.also { binding.progressIndicator.visibility = it }
+    }
+
+    private fun hideProgressBar() {
+        View.GONE.also { binding.progressIndicator.visibility = it }
+    }
+
     companion object {
         private const val TAG = "CameraActivity"
-        const val EXTRA_CAMERAX_IMAGE = "CameraX Image"
-        const val CAMERAX_RESULT = 200
         private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA
     }
 }
