@@ -1,7 +1,6 @@
 package com.myapp.skinsavvy
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -46,10 +45,13 @@ class DetailArticleActivity : AppCompatActivity() {
         viewModel.responseMessage.observe(this) { message ->
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         }
+
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
     }
 
     private fun setDetailArticle(article: Article?) {
-        Log.d("DetailArticleActivity", "Setting article: $article")
         binding.apply {
             Glide.with(this@DetailArticleActivity)
                 .load(article?.thumbnailUrl)

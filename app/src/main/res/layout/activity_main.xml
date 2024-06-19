@@ -14,6 +14,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -212,7 +213,7 @@
                 tools:visibility="visible" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_carousel_article"
+                android:id="@+id/rv_article"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:paddingTop="16dp"
@@ -233,7 +234,7 @@
                 android:layout_marginBottom="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rv_carousel_article"
+                app:layout_constraintTop_toBottomOf="@id/rv_article"
                 tools:ignore="MissingConstraints" />
 
             <TextView

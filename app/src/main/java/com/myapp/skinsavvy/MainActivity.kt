@@ -2,7 +2,6 @@ package com.myapp.skinsavvy
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -37,22 +36,25 @@ class MainActivity : AppCompatActivity() {
         recyclerViewPoster.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         //list article
-        binding.rvCarouselArticle.layoutManager = LinearLayoutManager(this)
+        binding.rvArticle.layoutManager = LinearLayoutManager(this)
         mainViewModel.listArticle.observe(this) { articleList ->
             val articleCount = articleList.take(3)
 
             if (articleCount.isEmpty()) {
-                binding.rvCarouselArticle.visibility = View.GONE
+                binding.rvArticle.visibility = View.GONE
                 binding.buttonAllArticle.visibility = View.GONE
                 binding.tvNoArticle.visibility = View.VISIBLE
             } else {
-                binding.rvCarouselArticle.visibility = View.VISIBLE
+                binding.rvArticle.visibility = View.VISIBLE
                 binding.buttonAllArticle.visibility = View.VISIBLE
                 binding.tvNoArticle.visibility = View.GONE
                 adapter = ArticleAdapter(articleCount)
-                binding.rvCarouselArticle.adapter = adapter
+                binding.rvArticle.adapter = adapter
             }
-            showLoading()
+        }
+
+        mainViewModel.isLoading.observe(this) {
+            showLoading(it)
         }
 
         binding.ivFeatureScan.setOnClickListener{
@@ -63,9 +65,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this@MainActivity, InstructionActivity::class.java))
         }
 
-//        binding.buttonAllArticle.setOnClickListener{
-//            startActivity(Intent(this@MainActivity, AllArticleActivity::class.java))
-//        }
+        binding.buttonAllArticle.setOnClickListener{
+            startActivity(Intent(this@MainActivity, AllArticleActivity::class.java))
+        }
 
         setMenuItem()
     }
@@ -87,9 +89,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showLoading() {
-        mainViewModel.isLoading.observe(this) {
-            binding.progressIndicator.visibility = if (it) View.VISIBLE else View.GONE
-        }
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }
