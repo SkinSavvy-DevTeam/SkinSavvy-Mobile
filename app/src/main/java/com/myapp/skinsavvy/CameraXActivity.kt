@@ -132,7 +132,6 @@ class CameraXActivity : AppCompatActivity() {
         }
     }
 
-
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
         val photoFile = createCustomTempFile(application)
@@ -144,7 +143,6 @@ class CameraXActivity : AppCompatActivity() {
                 @RequiresApi(Build.VERSION_CODES.P)
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     currentImageUri = Uri.fromFile(photoFile)
-                    // Setelah gambar disimpan, mulai proses pemangkasan
                     startCrop(currentImageUri!!)
                 }
                 override fun onError(exc: ImageCaptureException) {
@@ -189,8 +187,6 @@ class CameraXActivity : AppCompatActivity() {
                             // Cetak hasil klasifikasi dan waktu inferensi ke log
                             Log.d("Image Classification", "Result: $result")
                             Log.d("Image Classification", "Inference Time: $inferenceTime ms")
-                            // Tampilkan hasil klasifikasi ke pengguna
-                            showToast("Result: $result\nInference Time: $inferenceTime ms")
                             hideProgressBar()
                             moveToResult()
                         }
@@ -210,12 +206,6 @@ class CameraXActivity : AppCompatActivity() {
         }
         startActivity(intent)
     }
-
-
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
 
 
     private fun hideSystemUI() {
@@ -303,9 +293,6 @@ class CameraXActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         releaseCamera()
-    }
-    private fun showProgressBar() {
-        View.VISIBLE.also { binding.progressIndicator.visibility = it }
     }
 
     private fun hideProgressBar() {

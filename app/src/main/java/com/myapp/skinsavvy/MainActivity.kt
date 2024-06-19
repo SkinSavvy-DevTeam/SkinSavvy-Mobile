@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -63,6 +64,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this@MainActivity, InstructionActivity::class.java))
         }
 
+        binding.ivFeatureHistory.setOnClickListener{
+            Toast.makeText(this, "Coming Soon", Toast.LENGTH_LONG).show()
+        }
 //        binding.buttonAllArticle.setOnClickListener{
 //            startActivity(Intent(this@MainActivity, AllArticleActivity::class.java))
 //        }
@@ -86,6 +90,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
 
     private fun showLoading() {
         mainViewModel.isLoading.observe(this) {
