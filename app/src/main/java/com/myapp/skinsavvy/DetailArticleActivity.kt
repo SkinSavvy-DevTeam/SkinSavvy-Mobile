@@ -46,6 +46,10 @@ class DetailArticleActivity : AppCompatActivity() {
         viewModel.responseMessage.observe(this) { message ->
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         }
+
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
     }
 
     private fun setDetailArticle(article: Article?) {

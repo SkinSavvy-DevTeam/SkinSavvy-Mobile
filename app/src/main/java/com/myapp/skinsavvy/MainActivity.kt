@@ -52,7 +52,10 @@ class MainActivity : AppCompatActivity() {
                 adapter = ArticleAdapter(articleCount)
                 binding.rvCarouselArticle.adapter = adapter
             }
-            showLoading()
+        }
+
+        mainViewModel.isLoading.observe(this) {
+            showLoading(it)
         }
 
         binding.ivFeatureScan.setOnClickListener{
@@ -63,9 +66,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this@MainActivity, InstructionActivity::class.java))
         }
 
-//        binding.buttonAllArticle.setOnClickListener{
-//            startActivity(Intent(this@MainActivity, AllArticleActivity::class.java))
-//        }
+        binding.buttonAllArticle.setOnClickListener{
+            startActivity(Intent(this@MainActivity, AllArticleActivity::class.java))
+        }
 
         setMenuItem()
     }
@@ -87,9 +90,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showLoading() {
-        mainViewModel.isLoading.observe(this) {
-            binding.progressIndicator.visibility = if (it) View.VISIBLE else View.GONE
-        }
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }
