@@ -2,6 +2,7 @@ package com.myapp.skinsavvy
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -37,8 +38,8 @@ class MainActivity : AppCompatActivity() {
 
         //list article
         binding.rvCarouselArticle.layoutManager = LinearLayoutManager(this)
-        mainViewModel.listArticle.observe(this) {
-            val articleCount = it.take(3)
+        mainViewModel.listArticle.observe(this) { articleList ->
+            val articleCount = articleList.take(3)
 
             if (articleCount.isEmpty()) {
                 binding.rvCarouselArticle.visibility = View.GONE
@@ -51,6 +52,7 @@ class MainActivity : AppCompatActivity() {
                 adapter = ArticleAdapter(articleCount)
                 binding.rvCarouselArticle.adapter = adapter
             }
+            showLoading()
         }
 
         binding.ivFeatureScan.setOnClickListener{
@@ -87,7 +89,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showLoading() {
         mainViewModel.isLoading.observe(this) {
-            binding.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            binding.progressIndicator.visibility = if (it) View.VISIBLE else View.GONE
         }
     }
 }
