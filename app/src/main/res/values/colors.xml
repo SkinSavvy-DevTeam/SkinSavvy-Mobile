@@ -9,4 +9,8 @@
     <color name="blue">#3771C8</color>
     <color name="grey">#858585</color>
     <color name="dull_green">#70A56F</color>
+    <color name="clear">#00D515</color>
+    <color name="level0">#F2EA28</color>
+    <color name="level1">#F8894B</color>
+    <color name="level2">#F30000</color>
 </resources>

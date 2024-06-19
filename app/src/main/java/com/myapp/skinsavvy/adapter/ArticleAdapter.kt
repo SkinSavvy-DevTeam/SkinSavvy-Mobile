@@ -1,9 +1,14 @@
 package com.myapp.skinsavvy.adapter
 
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.myapp.skinsavvy.DetailArticleViewModel
 import com.myapp.skinsavvy.data.response.ArticlesItem
 import com.myapp.skinsavvy.databinding.ArticleItemLayoutBinding
 
@@ -23,6 +28,12 @@ class ArticleAdapter(private val items: List<ArticlesItem?>) :
                 .into(ivCarouselImage)
             tvItemCategory.text = item?.category
             tvItemName.text = item?.title
+
+            holder.itemView.setOnClickListener {
+                val intent = Intent(holder.itemView.context, DetailArticleViewModel::class.java)
+                intent.putExtra(DetailArticleViewModel.DETAIL_ARTICLE, item?.id)
+                holder.itemView.context.startActivity(intent)
+            }
         }
     }
 

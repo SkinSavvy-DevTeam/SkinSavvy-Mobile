@@ -39,13 +39,16 @@ android {
     buildFeatures{
         viewBinding = true
         buildConfig = true
+        mlModelBinding = true
     }
 }
 
 dependencies {
 
+    implementation(libs.tensorflow.lite.support)
+    implementation(libs.tensorflow.lite.metadata)
+    implementation(libs.tensorflow.lite.gpu)
     val cameraxVersion = "1.2.3"
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -59,6 +62,9 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.glide)
+
+    implementation("com.github.yalantis:ucrop:2.2.8")
+
     
     implementation("androidx.camera:camera-camera2:$cameraxVersion")
     implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
