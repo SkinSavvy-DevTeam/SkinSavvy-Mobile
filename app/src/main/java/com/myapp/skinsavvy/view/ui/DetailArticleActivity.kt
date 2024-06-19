@@ -1,4 +1,4 @@
-package com.myapp.skinsavvy
+package com.myapp.skinsavvy.view.ui
 
 import android.os.Bundle
 import android.view.View
@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.myapp.skinsavvy.view.viewmodel.DetailArticleViewModel
 import com.myapp.skinsavvy.data.response.Article
 import com.myapp.skinsavvy.databinding.ActivityDetailArticleBinding
 import java.util.Locale

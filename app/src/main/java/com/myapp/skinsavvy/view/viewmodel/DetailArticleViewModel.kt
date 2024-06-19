@@ -1,4 +1,4 @@
-package com.myapp.skinsavvy
+package com.myapp.skinsavvy.view.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

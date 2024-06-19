@@ -17,6 +17,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "BASE_URL", "\"https://skinsavvy-production-erdqtm5s5a-et.a.run.app/\"")
     }
 
     buildTypes {

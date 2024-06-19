@@ -1,6 +1,6 @@
 package com.myapp.skinsavvy.data.retrofit
 
-import com.myapp.skinsavvy.ResponseSolution
+import com.myapp.skinsavvy.data.response.ResponseSolution
 import com.myapp.skinsavvy.data.response.ArticlesResponse
 import com.myapp.skinsavvy.data.response.DetailArticleResponse
 import retrofit2.Call

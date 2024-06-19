@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/main"
-    tools:context=".DetailArticleActivity">
+    tools:context=".view.ui.DetailArticleActivity">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -74,9 +74,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:textAlignment="center"
                     android:fontFamily="@font/inter_regular"
                     android:text="@string/isi_article"
-                    android:textAlignment=""
                     android:textColor="@color/black"
                     android:textSize="18sp" />
             </LinearLayout>

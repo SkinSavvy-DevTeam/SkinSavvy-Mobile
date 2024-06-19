@@ -1,5 +1,6 @@
 package com.myapp.skinsavvy.data.retrofit
 
+import com.myapp.skinsavvy.BuildConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -9,7 +10,7 @@ object ApiConfig {
         val client = OkHttpClient.Builder()
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://skinsavvy-production-erdqtm5s5a-et.a.run.app/")
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

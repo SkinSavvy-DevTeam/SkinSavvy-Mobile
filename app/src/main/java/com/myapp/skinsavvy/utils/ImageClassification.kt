@@ -1,4 +1,4 @@
-package com.myapp.skinsavvy
+package com.myapp.skinsavvy.utils
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -6,8 +6,8 @@ import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.SystemClock
-import android.util.Log
 import androidx.annotation.RequiresApi
+import com.myapp.skinsavvy.R
 import com.myapp.skinsavvy.ml.ModelSkinSavvy
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
@@ -38,7 +38,6 @@ class ImageClassification(
             imageClassifier = ModelSkinSavvy.newInstance(context)
         } catch (e: IllegalStateException) {
             classifierListener?.onError(context.getString(R.string.image_classifier_failed))
-            Log.e(TAG, e.message.toString())
         }
     }
 
