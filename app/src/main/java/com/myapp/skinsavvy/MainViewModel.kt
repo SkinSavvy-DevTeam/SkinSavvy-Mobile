@@ -1,6 +1,5 @@
 package com.myapp.skinsavvy
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -36,14 +35,11 @@ class MainViewModel : ViewModel() {
                     if (responseBody != null) {
                         _listArticle.value = responseBody.data?.articles?.filterNotNull()
                     }
-                } else {
-                    Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<ArticlesResponse>, t: Throwable) {
                 _isLoading.value = false
-                Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
     }

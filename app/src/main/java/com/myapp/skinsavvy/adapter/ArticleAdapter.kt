@@ -1,7 +1,6 @@
 package com.myapp.skinsavvy.adapter
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -38,7 +37,6 @@ class ArticleAdapter(private val items: List<ArticlesItem?>) :
                 tvItemName.text = article.title
 
                 itemView.setOnClickListener {
-                    Log.d("ArticleAdapter", "Starting DetailArticleActivity with ID: ${article.id}")
                     val intent = Intent(itemView.context, DetailArticleActivity::class.java)
                     intent.putExtra(DetailArticleActivity.DETAIL_ARTICLE, article.id)
                     itemView.context.startActivity(intent)

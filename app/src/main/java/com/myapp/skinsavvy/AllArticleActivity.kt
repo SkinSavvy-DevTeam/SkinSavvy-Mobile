@@ -3,16 +3,12 @@ package com.myapp.skinsavvy
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.myapp.skinsavvy.adapter.ArticleAdapter
 import com.myapp.skinsavvy.databinding.ActivityAllArticleBinding
-import com.myapp.skinsavvy.databinding.ActivityMainBinding
 
 class AllArticleActivity : AppCompatActivity() {
 
@@ -26,10 +22,10 @@ class AllArticleActivity : AppCompatActivity() {
 
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        binding.rvCarouselArticle.layoutManager = LinearLayoutManager(this)
+        binding.rvArticle.layoutManager = LinearLayoutManager(this)
         mainViewModel.listArticle.observe(this) { articleList ->
             adapter = ArticleAdapter(articleList)
-            binding.rvCarouselArticle.adapter = adapter
+            binding.rvArticle.adapter = adapter
         }
 
         mainViewModel.isLoading.observe(this) {

@@ -64,10 +64,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/inter_bold"
-                    android:text="@string/article_tittle"
                     android:textColor="@color/black"
                     android:textAlignment="center"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    tools:text="@string/article_tittle"/>
 
                 <TextView
                     android:id="@+id/tv_description"
@@ -76,7 +76,7 @@
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/inter_regular"
                     android:text="@string/isi_article"
-                    android:textAlignment="center"
+                    android:textAlignment=""
                     android:textColor="@color/black"
                     android:textSize="18sp" />
             </LinearLayout>

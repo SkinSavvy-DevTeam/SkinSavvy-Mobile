@@ -1,7 +1,6 @@
 package com.myapp.skinsavvy
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -53,7 +52,6 @@ class DetailArticleActivity : AppCompatActivity() {
     }
 
     private fun setDetailArticle(article: Article?) {
-        Log.d("DetailArticleActivity", "Setting article: $article")
         binding.apply {
             Glide.with(this@DetailArticleActivity)
                 .load(article?.thumbnailUrl)

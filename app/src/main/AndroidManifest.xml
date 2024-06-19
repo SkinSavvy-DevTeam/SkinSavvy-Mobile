@@ -33,10 +33,7 @@
             android:name=".InstructionActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".DetailArticleActivity"
@@ -45,10 +42,7 @@
             android:name=".CameraXActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
-            android:exported="true" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

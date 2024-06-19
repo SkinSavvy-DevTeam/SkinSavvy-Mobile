@@ -1,6 +1,5 @@
 package com.myapp.skinsavvy
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,7 +33,6 @@ class DetailArticleViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     _detailArticleResponse.value = response.body()?.data?.article
                 } else {
-                    Log.e("story detail", "onResponse: ${response.message()}, ${response.code()}")
                     _responseMessage.value = "Failed: ${response.message()}"
                 }
             }
