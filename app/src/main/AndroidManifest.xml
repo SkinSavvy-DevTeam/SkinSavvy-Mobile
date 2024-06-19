@@ -30,7 +30,7 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ArticleTipsActivity"
+            android:name=".DetailArticleActivity"
             android:exported="false" />
         <activity
             android:name=".CameraXActivity"
