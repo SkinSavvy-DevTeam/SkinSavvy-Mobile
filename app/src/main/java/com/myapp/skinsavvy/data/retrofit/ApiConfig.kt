@@ -9,7 +9,7 @@ object ApiConfig {
         val client = OkHttpClient.Builder()
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://skinsavvy-staging-gna3parswa-et.a.run.app/")
+            .baseUrl("https://skinsavvy-production-erdqtm5s5a-et.a.run.app/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

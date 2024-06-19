@@ -1,16 +1,15 @@
 package com.myapp.skinsavvy.adapter
 
-import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.util.Pair
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.myapp.skinsavvy.DetailArticleViewModel
+import com.myapp.skinsavvy.DetailArticleActivity
 import com.myapp.skinsavvy.data.response.ArticlesItem
 import com.myapp.skinsavvy.databinding.ArticleItemLayoutBinding
+import java.util.Locale
 
 class ArticleAdapter(private val items: List<ArticlesItem?>) :
     RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
@@ -21,25 +20,38 @@ class ArticleAdapter(private val items: List<ArticlesItem?>) :
     }
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-        val item = items[position]
-        with(holder.binding) {
-            Glide.with(ivCarouselImage.context)
-                .load(item?.thumbnailUrl)
-                .into(ivCarouselImage)
-            tvItemCategory.text = item?.category
-            tvItemName.text = item?.title
+        val article = getItem(position)
+        if (article != null) {
+            holder.bind(article)
+        }
+    }
 
-            holder.itemView.setOnClickListener {
-                val intent = Intent(holder.itemView.context, DetailArticleViewModel::class.java)
-                intent.putExtra(DetailArticleViewModel.DETAIL_ARTICLE, item?.id)
-                holder.itemView.context.startActivity(intent)
+    class ArticleViewHolder(private val binding: ArticleItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(article: ArticlesItem) {
+            binding.apply {
+                article.thumbnailUrl?.let {
+                    Glide.with(itemView.context)
+                        .load(it)
+                        .into(ivCarouselImage)
+                }
+                tvItemCategory.text = article.category?.capitalize(Locale.ROOT)
+                tvItemName.text = article.title
+
+                itemView.setOnClickListener {
+                    Log.d("ArticleAdapter", "Starting DetailArticleActivity with ID: ${article.id}")
+                    val intent = Intent(itemView.context, DetailArticleActivity::class.java)
+                    intent.putExtra(DetailArticleActivity.DETAIL_ARTICLE, article.id)
+                    itemView.context.startActivity(intent)
+                }
             }
         }
     }
 
-    class ArticleViewHolder(val binding: ArticleItemLayoutBinding) : RecyclerView.ViewHolder(binding.root)
-
     override fun getItemCount(): Int {
         return items.size
+    }
+
+    private fun getItem(position: Int): ArticlesItem? {
+        return items[position]
     }
 }
