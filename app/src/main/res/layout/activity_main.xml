@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".view.ui.MainActivity">
 
     <ScrollView
         android:layout_width="0dp"
@@ -25,6 +25,7 @@
                 android:layout_height="150dp"
                 android:orientation="vertical"
                 android:padding="28dp"
+
                 android:background="@drawable/header_background_shape"
                 tools:ignore="MissingConstraints" >
 
@@ -101,12 +102,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="22dp"
+
                     android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/iv_feature_instruction"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:background="@drawable/feature_background_shape"
                         android:backgroundTint="@color/light_purple"
                         android:src="@drawable/fitur_instruksi"

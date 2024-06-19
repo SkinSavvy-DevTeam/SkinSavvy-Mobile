@@ -1,4 +1,4 @@
-package com.myapp.skinsavvy
+package com.myapp.skinsavvy.utils
 
 import android.content.ContentValues
 import android.content.Context
@@ -12,6 +12,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
+import com.myapp.skinsavvy.BuildConfig
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream

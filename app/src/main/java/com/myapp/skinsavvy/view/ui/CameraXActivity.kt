@@ -1,4 +1,4 @@
-package com.myapp.skinsavvy
+package com.myapp.skinsavvy.view.ui
 
 import android.Manifest
 import android.content.Intent
@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.OrientationEventListener
 import android.view.Surface
 import android.view.View
@@ -23,7 +22,9 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import com.myapp.skinsavvy.utils.ImageClassification
 import com.myapp.skinsavvy.databinding.ActivityCameraXactivityBinding
+import com.myapp.skinsavvy.utils.createCustomTempFile
 import com.yalantis.ucrop.UCrop
 import java.io.File
 import java.util.UUID
@@ -113,7 +114,6 @@ class CameraXActivity : AppCompatActivity() {
 
             currentImageUri = uri
         } else {
-            Log.d("Photo Picker", "No media selected")
         }
     }
 
@@ -124,14 +124,12 @@ class CameraXActivity : AppCompatActivity() {
         if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
             val resultCropped = UCrop.getOutput(data!!)
             currentImageUri = resultCropped
-            Log.d("crop success", "Cropping success: $resultCropped")
             analyzeImage()
         } else if (resultCode == UCrop.RESULT_ERROR) {
             val cropError = UCrop.getError(data!!)
-            Log.e("crop failed", "Cropping failed: $cropError")
+            Toast.makeText(this, "Cropping failed: $cropError", Toast.LENGTH_SHORT).show()
         }
     }
-
 
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
@@ -144,7 +142,6 @@ class CameraXActivity : AppCompatActivity() {
                 @RequiresApi(Build.VERSION_CODES.P)
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     currentImageUri = Uri.fromFile(photoFile)
-                    // Setelah gambar disimpan, mulai proses pemangkasan
                     startCrop(currentImageUri!!)
                 }
                 override fun onError(exc: ImageCaptureException) {
@@ -153,7 +150,6 @@ class CameraXActivity : AppCompatActivity() {
                         "Gagal mengambil gambar.",
                         Toast.LENGTH_SHORT
                     ).show()
-                    Log.e(TAG, "onError: ${exc.message}")
                 }
             }
         )
@@ -161,14 +157,11 @@ class CameraXActivity : AppCompatActivity() {
 
     private fun startCrop(uri: Uri) {
         val cropUri = Uri.fromFile(File(cacheDir, "cropped_image_${UUID.randomUUID()}.jpg"))
-
         UCrop.of(uri, cropUri)
             .withAspectRatio(16F, 16F)
             .withMaxResultSize(2000, 2000)
             .start(this@CameraXActivity)
     }
-
-
 
     @RequiresApi(Build.VERSION_CODES.P)
     private fun analyzeImage() {
@@ -186,11 +179,6 @@ class CameraXActivity : AppCompatActivity() {
                     runOnUiThread {
                         results?.let {
                             result = it.joinToString("\n")
-                            // Cetak hasil klasifikasi dan waktu inferensi ke log
-                            Log.d("Image Classification", "Result: $result")
-                            Log.d("Image Classification", "Inference Time: $inferenceTime ms")
-                            // Tampilkan hasil klasifikasi ke pengguna
-                            showToast("Result: $result\nInference Time: $inferenceTime ms")
                             hideProgressBar()
                             moveToResult()
                         }
@@ -210,12 +198,6 @@ class CameraXActivity : AppCompatActivity() {
         }
         startActivity(intent)
     }
-
-
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
 
 
     private fun hideSystemUI() {
@@ -251,7 +233,6 @@ class CameraXActivity : AppCompatActivity() {
                 )
             }, ContextCompat.getMainExecutor(this))
         } catch (exc: Exception) {
-            Log.e(TAG, "Error starting camera: ${exc.message}")
         }
     }
 
@@ -263,7 +244,6 @@ class CameraXActivity : AppCompatActivity() {
                 cameraProvider.unbindAll()
             }, ContextCompat.getMainExecutor(this))
         } catch (exc: Exception) {
-            Log.e(TAG, "Error stopping camera: ${exc.message}")
         }
     }
 
@@ -275,7 +255,6 @@ class CameraXActivity : AppCompatActivity() {
                 cameraProvider.unbindAll()
             }, ContextCompat.getMainExecutor(this))
         } catch (exc: Exception) {
-            Log.e(TAG, "Error releasing camera: ${exc.message}")
         }
     }
 
@@ -304,16 +283,12 @@ class CameraXActivity : AppCompatActivity() {
         super.onDestroy()
         releaseCamera()
     }
-    private fun showProgressBar() {
-        View.VISIBLE.also { binding.progressIndicator.visibility = it }
-    }
 
     private fun hideProgressBar() {
         View.GONE.also { binding.progressIndicator.visibility = it }
     }
 
     companion object {
-        private const val TAG = "CameraActivity"
         private const val REQUIRED_PERMISSION = Manifest.permission.CAMERA
     }
 }

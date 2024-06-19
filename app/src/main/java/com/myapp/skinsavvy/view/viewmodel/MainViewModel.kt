@@ -1,4 +1,4 @@
-package com.myapp.skinsavvy
+package com.myapp.skinsavvy.view.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -42,9 +42,5 @@ class MainViewModel : ViewModel() {
                 _isLoading.value = false
             }
         })
-    }
-
-    companion object {
-        private const val TAG = "MainActivity"
     }
 }

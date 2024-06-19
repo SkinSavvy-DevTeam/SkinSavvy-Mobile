@@ -1,4 +1,4 @@
-package com.myapp.skinsavvy
+package com.myapp.skinsavvy.view.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.myapp.skinsavvy.view.viewmodel.MainViewModel
+import com.myapp.skinsavvy.R
 import com.myapp.skinsavvy.adapter.ArticleAdapter
 import com.myapp.skinsavvy.databinding.ActivityAllArticleBinding
 

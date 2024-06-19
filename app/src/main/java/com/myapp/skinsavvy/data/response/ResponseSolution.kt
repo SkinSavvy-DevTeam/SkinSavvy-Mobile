@@ -1,11 +1,11 @@
-package com.myapp.skinsavvy
+package com.myapp.skinsavvy.data.response
 
 import com.google.gson.annotations.SerializedName
 
 data class ResponseSolution(
 
 	@field:SerializedName("data")
-	val data: Data? = null,
+	val data: DataSolution? = null,
 
 	@field:SerializedName("message")
 	val message: String? = null,
@@ -26,7 +26,7 @@ data class Level(
 	val id: String? = null
 )
 
-data class Data(
+data class DataSolution(
 
 	@field:SerializedName("severityLevelSolution")
 	val severityLevelSolution: SeverityLevelSolution? = null

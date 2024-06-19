@@ -1,4 +1,4 @@
-package com.myapp.skinsavvy
+package com.myapp.skinsavvy.view.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

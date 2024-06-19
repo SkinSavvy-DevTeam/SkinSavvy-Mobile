@@ -1,13 +1,16 @@
-package com.myapp.skinsavvy
+package com.myapp.skinsavvy.view.ui
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.myapp.skinsavvy.view.viewmodel.MainViewModel
+import com.myapp.skinsavvy.R
 import com.myapp.skinsavvy.adapter.ArticleAdapter
 import com.myapp.skinsavvy.adapter.PosterAdapter
 import com.myapp.skinsavvy.data.pref.DataModel
@@ -25,7 +28,6 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        // carousel poster
         val recyclerViewPoster: RecyclerView = binding.rvCarouselPoster
         val poster = listOf(
             DataModel(R.drawable.image_poster_1),
@@ -35,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         recyclerViewPoster.adapter = PosterAdapter(poster)
         recyclerViewPoster.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        //list article
         binding.rvArticle.layoutManager = LinearLayoutManager(this)
         mainViewModel.listArticle.observe(this) { articleList ->
             val articleCount = articleList.take(3)
@@ -63,6 +64,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.ivFeatureInstruction.setOnClickListener{
             startActivity(Intent(this@MainActivity, InstructionActivity::class.java))
+        }
+
+        binding.ivFeatureHistory.setOnClickListener{
+            Toast.makeText(this, "Coming Soon", Toast.LENGTH_LONG).show()
         }
 
         binding.buttonAllArticle.setOnClickListener{

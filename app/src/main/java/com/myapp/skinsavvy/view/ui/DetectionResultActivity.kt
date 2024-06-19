@@ -1,12 +1,12 @@
-package com.myapp.skinsavvy
+package com.myapp.skinsavvy.view.ui
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.myapp.skinsavvy.view.viewmodel.DetectionResultViewModel
 import com.myapp.skinsavvy.databinding.ActivityDetectionResultBinding
 
 class DetectionResultActivity : AppCompatActivity() {
@@ -31,8 +31,7 @@ class DetectionResultActivity : AppCompatActivity() {
             finish()
         }
 
-        viewModel.solutionExplanation.observe(this) { explanation ->
-            Log.d("ArticleTipsActivity", "Explanation: $explanation")
+        viewModel.solution.observe(this) { explanation ->
             binding.progressBar.visibility = View.GONE
             if (explanation != null) {
                 binding.solution.text = explanation
@@ -42,12 +41,8 @@ class DetectionResultActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.isLoading.observe(this) { isLoading ->
-            if (isLoading) {
-                binding.progressBar.visibility = View.VISIBLE
-            } else {
-                binding.progressBar.visibility = View.GONE
-            }
+        viewModel.isLoading.observe(this) {
+            showLoading(it)
         }
 
         val result = intent.getStringExtra(EXTRA_RESULT)
@@ -56,11 +51,10 @@ class DetectionResultActivity : AppCompatActivity() {
 
         runOnUiThread {
             imageUri?.let {
-                Log.d("Image URI", "showImage: $it")
                 binding.imageView.setImageURI(it)
                 binding.title.text = result
 
-                updateLevelVisibility(result)
+                levelVisibility(result)
             }
         }
     }
@@ -89,7 +83,7 @@ class DetectionResultActivity : AppCompatActivity() {
         binding.solution.visibility = if (isSolutionVisible) View.VISIBLE else View.GONE
     }
 
-    private fun updateLevelVisibility(result: String?) {
+    private fun levelVisibility(result: String?) {
         when (result) {
             "Clear" -> {
                 binding.clearFalse.visibility = View.GONE
@@ -118,6 +112,10 @@ class DetectionResultActivity : AppCompatActivity() {
                 binding.level2True.visibility = View.GONE
             }
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
     companion object {
         const val EXTRA_IMAGE = "extra_image"
