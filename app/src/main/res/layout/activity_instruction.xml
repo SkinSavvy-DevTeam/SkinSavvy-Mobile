@@ -269,7 +269,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="28dp"
-            android:text="Agar aplikasi dapat mendeteksi masalah wajah dengan baik, silahkan ikuti beberapa tips dalam mengambil gambar wajah dibawah ini"
+            android:text="@string/take_picture"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -296,7 +296,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/custom_font_family"
-                android:text="Silahkan ambil gambar pada bagian wajah yang ingin dideteksi seperti dari bagian depan, kanan atau kiri"
+                android:text="@string/take_picture_1"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -321,7 +321,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/custom_font_family"
-                android:text="Lakukan crop gambar menyesuaikan bentuk wajah"
+                android:text="@string/take_picture_2"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -347,7 +347,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/custom_font_family"
-                android:text="Lakukan pengambilan gambar ditempat yang terang"
+                android:text="@string/take_picture_3"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -365,7 +365,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/custom_font_family"
-                android:text="Contoh Gambar"
+                android:text="@string/image_example"
                 android:textSize="14sp" />
         </LinearLayout>
         <LinearLayout
@@ -397,11 +397,6 @@
                 android:layout_marginHorizontal="20dp"
                 android:src="@drawable/example_2"/>
 
-
-
         </LinearLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </ScrollView>
