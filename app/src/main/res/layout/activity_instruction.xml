@@ -269,7 +269,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="28dp"
-            android:text="@string/take_picture"
+            android:text="@string/instruction_2_sub_title"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -296,7 +296,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/custom_font_family"
-                android:text="@string/take_picture_1"
+                android:text="@string/instruction_2_1"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -321,7 +321,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/custom_font_family"
-                android:text="@string/take_picture_2"
+                android:text="@string/instruction_2_2"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -347,7 +347,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/custom_font_family"
-                android:text="@string/take_picture_3"
+                android:text="@string/instruction_2_3"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -365,9 +365,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/custom_font_family"
-                android:text="@string/image_example"
+                android:text="@string/instruction_2_picture_example"
                 android:textSize="14sp" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/linearLayout9"
             android:layout_width="match_parent"
@@ -375,6 +376,7 @@
             android:layout_margin="28dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout8"
             tools:layout_editor_absoluteX="28dp">
 
@@ -383,20 +385,22 @@
                 android:layout_height="70dp"
                 android:layout_marginHorizontal="20dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/example_1"/>
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:scaleType="centerCrop"
-                android:layout_marginHorizontal="20dp"
-                android:src="@drawable/example_3"/>
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:scaleType="centerCrop"
-                android:layout_marginHorizontal="20dp"
-                android:src="@drawable/example_2"/>
+                android:src="@drawable/example_1" />
 
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginHorizontal="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/example_3" />
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginHorizontal="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/example_2" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>
