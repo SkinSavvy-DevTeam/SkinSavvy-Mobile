@@ -7,10 +7,10 @@ Here is our repository for Bangkit Capstone project - Mobile Development.
 
 # Contributors 
 MD team consist of 2 members
-| No. | Name              | Github Profile Link | LinkedIn |
-| :-- | :---------------- | :------------------ | :------- |
-| 1.  | Fajar Rahmat      | [@fajarrahmaat27](https://github.com/fajarrahmaat27) | [LinkedIn](https://www.linkedin.com/in/fajar-rahmat/) |
-| 2.  | Putri Ramadhani M | [@Putri-R](https://github.com/Putri-R) | [LinkedIn](https://www.linkedin.com/in/pramadhanim/) |
+| No. | Name                       | Github Profile Link | LinkedIn |
+| :-- | :------------------------- | :------------------ | :------- |
+| 1.  | Fajar Rahmat               | [@fajarrahmaat27](https://github.com/fajarrahmaat27) | [LinkedIn](https://www.linkedin.com/in/fajar-rahmat/) |
+| 2.  | Putri Ramadhani Muliaqalbi | [@Putri-R](https://github.com/Putri-R) | [LinkedIn](https://www.linkedin.com/in/pramadhanim/) |
 
 # Our Features
 - Splash Screen
