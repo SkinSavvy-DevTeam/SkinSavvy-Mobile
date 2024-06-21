@@ -1,4 +1,4 @@
-# SkinSavvy - Mobile
+# SkinSavvy - Mobile App
 ![Presentasi Product Capstone Bangkit Team - ](https://github.com/SkinSavvy-DevTeam/SkinSavvy-Mobile/assets/125380130/5df12cf2-062a-4d9c-b7a1-9649b1134f0d)
 
 # Bangkit Capstone Project 2024
